@@ -2,6 +2,7 @@ group 'sq.flutter.tflite'
 version '1.0-SNAPSHOT'
 
 buildscript {
+
     repositories {
         google()
         mavenCentral()
@@ -12,17 +13,12 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+
 
 apply plugin: 'com.android.library'
 
 android {
-    namespace 'sq.flutter.tflite' // Add this line to specify the namespace
+    namespace 'sq.flutter.tflite'
     compileSdkVersion 35
 
     defaultConfig {
