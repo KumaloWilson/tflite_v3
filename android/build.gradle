@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2' // Updated to a more recent Gradle plugin version
+        classpath 'com.android.tools.build:gradle:8.9.1'
     }
 }
 
@@ -22,10 +22,11 @@ allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 34 // Updated to the latest stable SDK version
+    namespace 'sq.flutter.tflite' // Add this line to specify the namespace
+    compileSdkVersion 35
 
     defaultConfig {
-        minSdkVersion 24 // Consider updating minimum SDK version
+        minSdkVersion 24
         targetSdkVersion 34
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
@@ -41,7 +42,7 @@ android {
 }
 
 dependencies {
-    implementation 'org.tensorflow:tensorflow-lite:2.12.0' // Updated to latest stable version
+    implementation 'org.tensorflow:tensorflow-lite:2.12.0'
     implementation 'org.tensorflow:tensorflow-lite-gpu:2.12.0'
     implementation 'org.tensorflow:tensorflow-lite-support:0.4.4'
 }
