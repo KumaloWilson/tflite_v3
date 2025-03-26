@@ -28,7 +28,7 @@ public final class GeneratedPluginRegistrant {
     try {
       flutterEngine.getPlugins().add(new sq.flutter.tflite.TflitePlugin());
     } catch (Exception e) {
-      Log.e(TAG, "Error registering plugin tflite_v2, sq.flutter.tflite.TflitePlugin", e);
+      Log.e(TAG, "Error registering plugin tflite_v3, sq.flutter.tflite.TflitePlugin", e);
     }
   }
 }

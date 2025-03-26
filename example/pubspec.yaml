@@ -29,7 +29,7 @@ dev_dependencies:
   
   image: ^4.5.4
 
-  tflite_v2:
+  tflite_v3:
     path: ../
 
   test: ^1.25.15

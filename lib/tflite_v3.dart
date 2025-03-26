@@ -250,7 +250,7 @@ class Tflite {
     );
   }
 
-  // https://github.com/meetshah1995/pytorch-semseg/blob/master/ptsemseg/loader/pascal_voc_loader.py
+
   static List<int> pascalVOCLabelColors = [
     Color.fromARGB(255, 0, 0, 0).value, // background
     Color.fromARGB(255, 128, 0, 0).value, // aeroplane

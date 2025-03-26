@@ -5,8 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
-
-import 'package:tflite_v2/tflite_v2.dart';
+import 'package:tflite_v3/tflite_v3.dart';
 import 'package:image_picker/image_picker.dart';
 
 void main() => runApp(new App());
@@ -39,33 +38,36 @@ class _MyAppState extends State<MyApp> {
   double? _imageWidth;
   bool _busy = false;
 
-  Future predictImagePicker() async {
-    var image = await ImagePicker.platform.getImageFromSource(source: ImageSource.gallery);
+  Future<void> predictImagePicker() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
     if (image == null) return;
-    setState(() {
-      _busy = true;
-    });
-    predictImage(image: image);
+
+    setState(() => _busy = true);
+
+    await predictImage(image: image);
   }
+
 
   Future predictImage({required XFile? image}) async {
     if (image == null) return;
 
     switch (_model) {
       case yolo:
-        await yolov2Tiny(image!);
+        await yolov2Tiny(image);
         break;
       case ssd:
-        await ssdMobileNet(image!);
+        await ssdMobileNet(image);
         break;
       case deeplab:
-        await segmentMobileNet(image!);
+        await segmentMobileNet(image);
         break;
       case posenet:
-        await poseNet(image!);
+        await poseNet(image);
         break;
       default:
-        await recognizeImage(image!);
+        await recognizeImage(image);
       // await recognizeImageBinary(image);
     }
 
@@ -79,7 +81,7 @@ class _MyAppState extends State<MyApp> {
     }));
 
     setState(() {
-      _image = image!;
+      _image = image;
       _busy = false;
     });
   }
@@ -150,9 +152,9 @@ class _MyAppState extends State<MyApp> {
     for (var i = 0; i < inputSize; i++) {
       for (var j = 0; j < inputSize; j++) {
         var pixel = image.getPixel(j, i);
-        // buffer[pixelIndex++] = (img.(pixel) - mean) / std;
-        // buffer[pixelIndex++] = (img.getGreen(pixel) - mean) / std;
-        // buffer[pixelIndex++] = (img.getBlue(pixel) - mean) / std;
+        buffer[pixelIndex++] = (pixel.r - mean) / std;
+        buffer[pixelIndex++] = (pixel.g - mean) / std;
+        buffer[pixelIndex++] = (pixel.b - mean) / std;
       }
     }
     return convertedBytes.buffer.asUint8List();
@@ -165,9 +167,9 @@ class _MyAppState extends State<MyApp> {
     for (var i = 0; i < inputSize; i++) {
       for (var j = 0; j < inputSize; j++) {
         var pixel = image.getPixel(j, i);
-        // buffer[pixelIndex++] = img.getRed(pixel);
-        // buffer[pixelIndex++] = img.getGreen(pixel);
-        // buffer[pixelIndex++] = img.getBlue(pixel);
+        buffer[pixelIndex++] = pixel.r.toInt();
+        buffer[pixelIndex++] = pixel.g.toInt();
+        buffer[pixelIndex++] = pixel.b.toInt();
       }
     }
     return convertedBytes.buffer.asUint8List();
@@ -343,7 +345,7 @@ class _MyAppState extends State<MyApp> {
     var lists = <Widget>[];
     _recognitions?.forEach((re) {
       var color = Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
-          .withOpacity(1.0);
+          .withValues(alpha: 1.0);
       var list = re["keypoints"].values.map<Widget>((k) {
         return Positioned(
           left: k["x"] * factorX - 6,

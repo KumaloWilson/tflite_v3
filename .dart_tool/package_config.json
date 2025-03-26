@@ -350,13 +350,13 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "tflite_v2",
+      "name": "tflite_v3",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-03-26T09:37:57.183608Z",
+  "generated": "2025-03-26T17:12:30.331046Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///home/watkay/flutter",

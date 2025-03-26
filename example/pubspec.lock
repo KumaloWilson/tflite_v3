@@ -565,7 +565,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.8"
-  tflite_v2:
+  tflite_v3:
     dependency: "direct dev"
     description:
       path: ".."

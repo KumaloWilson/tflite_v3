@@ -12,10 +12,10 @@
 @import image_picker_ios;
 #endif
 
-#if __has_include(<tflite_v2/TflitePlugin.h>)
-#import <tflite_v2/TflitePlugin.h>
+#if __has_include(<tflite_v3/TflitePlugin.h>)
+#import <tflite_v3/TflitePlugin.h>
 #else
-@import tflite_v2;
+@import tflite_v3;
 #endif
 
 @implementation GeneratedPluginRegistrant

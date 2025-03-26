@@ -1,5 +1,5 @@
-name: tflite_v2
-description: A Flutter plugin for accessing TensorFlow Lite, fixed android embedding v2 error. Supports both iOS and Android.
+name: tflite_v3
+description: A Flutter plugin for accessing TensorFlow Lite, fixed android embedding v3 error. Supports both iOS and Android.
 version: 1.0.0
 homepage: https://github.com/Niketgoriya/flutter_tflite
 
