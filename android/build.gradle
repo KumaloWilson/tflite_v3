@@ -4,36 +4,44 @@ version '1.0-SNAPSHOT'
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:7.4.2' // Updated to a more recent Gradle plugin version
     }
 }
 
-rootProject.allprojects {
+allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 34 // Updated to the latest stable SDK version
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 24 // Consider updating minimum SDK version
+        targetSdkVersion 34
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
-    lintOptions {
-        disable 'InvalidPackage'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-    dependencies {
-        implementation 'org.tensorflow:tensorflow-lite:+'
-        implementation 'org.tensorflow:tensorflow-lite-gpu:+'
+    lint {
+        disable 'InvalidPackage'
     }
+}
+
+dependencies {
+    implementation 'org.tensorflow:tensorflow-lite:2.12.0' // Updated to latest stable version
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.12.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.4.4'
 }
