@@ -2,7 +2,6 @@ group 'sq.flutter.tflite'
 version '1.0-SNAPSHOT'
 
 buildscript {
-
     repositories {
         google()
         mavenCentral()
@@ -13,13 +12,11 @@ buildscript {
     }
 }
 
-
-
 apply plugin: 'com.android.library'
 
 android {
     namespace 'sq.flutter.tflite'
-    compileSdkVersion 35
+    compileSdkVersion 34  // Match targetSdkVersion
 
     defaultConfig {
         minSdkVersion 24
